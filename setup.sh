@@ -12,7 +12,10 @@ if [ $? = 0 ]; then
   echo "Checked out dotfiles from git@github.com:tsudd/dotfiles.git";
   else
     echo "Moving existing dotfiles to ~/.dotfiles-backup";
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+    config checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | while read -r file; do
+      mkdir -p ".dotfiles-backup/$(dirname "$file")"
+        mv "$file" ".dotfiles-backup/$file"
+      done
 fi
 # checkout dotfiles from repo
 config checkout
