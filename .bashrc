@@ -136,11 +136,8 @@ export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools/
 export PATH=$PATH:$HOME/.local/bin/
 
 export PATH="$PATH:/opt/nvim/"
-alias vim='nvim'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# config management
-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
