@@ -14,6 +14,7 @@ fi
 
 # Dotnet exports
 export DOTNET_ROOT=$HOME/.dotnet
+export DOTNET_INSTALL_DIR=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools/
 export PATH=$PATH:$HOME/.local/bin/
 
