@@ -12,9 +12,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Added by Toolbox App
-export PATH="$PATH:/home/alex/.local/share/JetBrains/Toolbox/scripts"
-
 # Dotnet exports
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools/
@@ -28,5 +25,11 @@ export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Ruby exports
-eval "$(rbenv init -)"
-PATH=~/.rbenv/versions/3.3.3/bin:$PATH
+# rbenv should be installed
+export GEM_HOME=$HOME/.gem
+export PATH=$HOME/.gem/bin:$PATH
+
+# mise is a tool to manage versions of environments and languages such as node, ruby, python, etc.
+# can be installed with `curl https://mise.run | sh`
+eval "$(~/.local/bin/mise activate zsh)"
+. "$HOME/.cargo/env"
