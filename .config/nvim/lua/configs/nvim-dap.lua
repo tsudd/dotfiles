@@ -1,5 +1,50 @@
 local dap = require "dap"
 
+-- ruby dap configurations
+require("dap-ruby").setup()
+dap.adapters.ruby = function(callback, config)
+  callback {
+    type = "server",
+    host = "127.0.0.1",
+    port = "${port}",
+    executable = {
+      command = "bundle",
+      args = {
+        "exec",
+        "rdbg",
+        "-n",
+        "--open",
+        "--port",
+        "${port}",
+        "-c",
+        "--",
+        "bundle",
+        "exec",
+        config.command,
+        config.script,
+      },
+    },
+  }
+end
+
+dap.configurations.ruby = {
+  {
+    type = "ruby",
+    name = "debug current file",
+    request = "attach",
+    localfs = true,
+    command = "ruby",
+    script = "${file}",
+  },
+  {
+    type = "ruby",
+    name = "run current spec file",
+    request = "attach",
+    localfs = true,
+    command = "rspec",
+    script = "${file}",
+  },
+}
 -- csharp dap configurations
 dap.adapters.coreclr = {
   type = "executable",
@@ -45,23 +90,3 @@ dap.configurations.cs = {
     -- end,
   },
 }
-
-local map = vim.keymap.set
-
-local opts = { noremap = true, silent = true }
-
-map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", opts)
-map("n", "<F6>", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", opts)
-map("n", "<F9>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
-map("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", opts)
-map("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", opts)
-map("n", "<F8>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
--- map("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
-map("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", opts)
-map("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", opts)
-map(
-  "n",
-  "<leader>dt",
-  "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>",
-  { noremap = true, silent = true, desc = "debug nearest test" }
-)

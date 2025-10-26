@@ -60,11 +60,11 @@ dapui.setup {
       pause = "",
       play = "",
       step_into = "",
-      step_over = "",
-      step_out = "",
+      step_over = "->",
+      step_out = "<-",
       step_back = "",
       run_last = "↻",
-      terminate = "□",
+      terminate = "0",
     },
   },
   floating = {
@@ -85,22 +85,20 @@ dapui.setup {
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+dap.listeners.before.attach["dapui_confg"] = function()
+  dapui.open()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
-vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
-vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
-vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
+-- vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
+-- vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
+-- vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
+-- vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
 
 vim.fn.sign_define("DapBreakpoint", {
-
-  text = "", -- nerdfonts icon here
-  -- text = '🔴', -- nerdfonts icon here
+  text = "🔴", -- nerdfonts icon here
   texthl = "DapBreakpointSymbol",
   linehl = "DapBreakpoint",
   numhl = "DapBreakpoint",

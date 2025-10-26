@@ -2,17 +2,6 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    keys = {
-      {
-        "<leader>f",
-
-        function()
-          require("conform").format { async = true, lsp_format = "fallback" }
-        end,
-        mode = "",
-        desc = "[F]ormat buffer",
-      },
-    },
     opts = require "configs.conform",
     cmd = { "ConformInfo" },
   },
@@ -36,6 +25,7 @@ return {
       ensure_installed = {
         "lua-language-server",
         "csharp-language-server",
+        "ruby_lsp",
         "omnisharp",
         "xmlformatter",
         "stylua",
@@ -53,6 +43,7 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
       "rcarriga/nvim-dap-ui",
+      "suketa/nvim-dap-ruby",
     },
     config = function()
       require "configs.nvim-dap"

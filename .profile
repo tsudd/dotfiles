@@ -25,9 +25,8 @@ export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Ruby exports
-# rbenv should be installed
 export GEM_HOME=$HOME/.gem
-export PATH=$HOME/.gem/bin:$PATH
+export PATH=$HOME/.gem/ruby/3.4.0/bin:$PATH
 
 # mise is a tool to manage versions of environments and languages such as node, ruby, python, etc.
 # can be installed with `curl https://mise.run | sh`

@@ -4,6 +4,7 @@ local nvlsp = require "nvchad.configs.lspconfig"
 
 local servers = {
   html = {},
+  rubocop = {},
   ruby_lsp = {
     capabilities = nvlsp.capabilities,
   },
@@ -18,6 +19,13 @@ local servers = {
   omnisharp = {
     cmd = {
       "/usr/local/bin/omnisharp-roslyn/OmniSharp",
+      "-z",
+      "--hostPID",
+      "12345",
+      "DotNet:enablePackageRestore=false",
+      "--encoding",
+      "utf-8",
+      "--languageserver",
     },
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,

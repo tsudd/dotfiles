@@ -12,13 +12,11 @@ map("i", "jk", "<ESC>")
 local builtin = require "telescope.builtin"
 map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-map("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
 map("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-map("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 map("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 -- It's also possible to pass additional configuration options.
 --  See `:help telescope.builtin.live_grep()` for information about particular keys
@@ -92,3 +90,18 @@ map("n", "<leader>gr", vim.lsp.buf.references, { desc = "[G]o to [R]eferences" }
 map("n", "<leader>gf", vim.lsp.buf.format, { desc = "[G]o [F]ormat" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]ename" })
+
+-- dap mappings
+local dap = require "dap"
+
+map("n", "<leader>dt", dap.toggle_breakpoint, { desc = "[D]ebug [T]oggle breakpoint" })
+map("n", "<leader>dc", dap.continue, { desc = "[D]ebug [C]ontinue" })
+map("n", "<leader>dl", dap.run_last, { desc = "[D]ebug Run [L]ast" })
+map("n", "<leader>dr", dap.repl.open, { desc = "[D]ebug [R]epl Open" })
+map("n", "<F10>", dap.step_over, { desc = "Debug Step Over" })
+map("n", "<F11>", dap.step_into, { desc = "Debug Step Into" })
+map("n", "<F12>", dap.step_out, { desc = "Debug Step Out" })
+
+-- test mappings
+-- local neotest = require "neotest"
+-- map("n", "<leader>dT", neotest.run({ strategy = "dap" }, { desc = "[D]ebug nearest [T]est" }))
