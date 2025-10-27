@@ -1,0 +1,136 @@
+set incsearch
+set ignorecase
+set smartcase
+set multiple-cursors
+set clipboard+=unnamed
+set ideajoin
+set ideaput
+set number
+set surround
+set highlightedyank
+set relativenumber
+set idearefactormode=keep
+set ideajoin
+set showmode
+set which-key
+set NERDTree
+
+noremap <SPACE> <Nop>
+" nnoremap <SPACE> :
+
+nmap zj o<ESC>k
+nmap zk O<ESC>j
+
+let mapleader = " "
+
+noremap <Esc> <nop>
+nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
+
+" system clipboard
+map mc <A-n>
+
+" tabs
+" nmap <leader>h :action PreviousTab<CR>
+" nmap <leader>l :action NextTab<CR>
+" nmap <leader>bd :action CloseEditor<CR>
+" nnoremap <leader>c :action CloseContent <CR>
+
+
+" file navigation
+nnoremap <leader>ww :action HideAllWindows <CR>
+nnoremap <leader>gt :action GotoTest <CR>
+nnoremap <leader>rc :action RunClass <CR>
+nnoremap ,rc :action ChooseRunConfiguration <CR>
+nnoremap <leader>gq :action QuickList.Git <CR>
+nnoremap <leader>ns :action NewScratchFile <CR>
+nnoremap <leader>nf :action NewElementSamePlace <CR>
+
+" useful
+nnoremap <C-A> gg<S-v>G
+
+
+" tested bindings
+vnoremap / :action Find<CR>
+nnoremap / :action Find<CR>
+
+" searching stuff
+nnoremap <leader>fa :action SearchEverywhere <CR>
+vnoremap <leader>fa :action SearchEverywhere <CR>
+nnoremap <leader>fo :action GotoFile <CR>
+vnoremap <leader>fo :action GotoFile <CR>
+nnoremap <leader>f. :action GotoAction <CR>
+vnoremap <leader>f. :action GotoAction <CR>
+nnoremap <leader>fc :action GotoClass <CR>
+vnoremap <leader>fc :action GotoClass <CR>
+nmap <leader>fg :action FindInPath<CR>
+vmap <leader>fg :action FindInPath<CR>
+nnoremap <leader>fs :action SelectInProjectView<CR>
+
+nmap <C-n> :NERDTreeToggle<CR>
+
+inoremap <C-j> <Esc>:m +1<CR>gi
+nnoremap <C-j> :m +1<CR>
+nnoremap <C-k> :m -2<CR>
+inoremap <C-k> <Esc>:m -2<CR>gi
+
+nnoremap <leader>/ :action CommentByLineComment <CR>
+vnoremap <leader>/ :action CommentByLineComment <CR>
+
+" replacing using IDEA
+vnoremap <leader>re :action Replace<CR>
+nnoremap <leader>re :action Replace<CR>
+
+map <leader>dt :action ToggleLineBreakpoint <CR>
+map <F10> :action StepOver <CR>
+map <F11> :action StepInto <CR>
+map <F12> :action StepOut <CR>
+
+map <leader>src :action IdeaVim.ReloadVimRc.reload <CR>
+
+" split window
+nnoremap <leader>wv :action SplitVertically <CR>
+nnoremap <leader>wc :action UnsplitAll <CR>
+nnoremap <leader>v :action NextSplitter <CR>
+
+" [G]o into code
+nnoremap gu :action FindUsages <CR>
+nnoremap gd :action GotoSuperMethod <CR>
+nnoremap gD :action GotoDeclaration <CR>
+nnoremap gh :action Back <CR>
+nnoremap gl :action Forward <CR>
+nnoremap gj :action MethodDown <CR>
+nnoremap gk :action MethodUp <CR>
+nnoremap gs :action GotoSuperMethod <CR>
+nnoremap gw :action ReformatCode <CR>
+nnoremap gi :action GotoImplementation <CR>
+nnoremap g, :action JumpToLastChange <CR>
+nnoremap g. :action JumpToNextChange <CR>
+
+" to look into something better...
+nnoremap K :action ShowHoverInfo <CR>
+
+" [G]it operations
+nnoremap <leader>gt :action ActivateCommitToolWindow<CR>
+nnoremap <leader>gc :action CheckinProject<CR>    
+nnoremap <leader>gp :action Vcs.Push<CR>         
+nnoremap <leader>gl :action Git.Log<CR>         
+nnoremap <leader>gb :action Git.Branches<CR>   
+nnoremap <leader>gf :action Vcs.Show.Changed.Files<CR>
+nnoremap <leader>gd :action Compare.LastVersion<CR>
+nnoremap <leader>gr :action Vcs.Rollback<CR>
+nnoremap <leader>gR :action Git.Rebase<CR>
+
+" [C]ode actions
+" nnoremap <leader>cv :action IntroduceVariable <CR>
+nnoremap <leader>ce :action ExtractMethod  <CR>
+vnoremap <leader>ce :action ExtractMethod  <CR>
+nnoremap <leader>cR :action Replace  <CR>
+vnoremap <leader>cR :action Replace  <CR>
+nnoremap <leader>cg :action Generate <CR>
+nnoremap <leader>cr :action RenameElement <CR>
+" nnoremap <leader>cc :action IntroduceConstant <CR>
+
+imap jk <ESC>
+imap kj <ESC>
+
