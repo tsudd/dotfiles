@@ -23,9 +23,9 @@ nmap zk O<ESC>j
 
 let mapleader = " "
 
-noremap <Esc> <nop>
+"noremap <Esc> <nop>
 nmap <S-Enter> O<Esc>
-" nmap <CR> o<Esc>
+ "nmap <CR> o<Esc>
 
 " system clipboard
 map mc <A-n>
@@ -109,6 +109,8 @@ nnoremap g. :action JumpToNextChange <CR>
 
 " to look into something better...
 nnoremap K :action ShowHoverInfo <CR>
+
+nnoremap <M-h> :action ActivateTerminalToolWindow <CR>
 
 " [G]it operations
 nnoremap <leader>gt :action ActivateCommitToolWindow<CR>
