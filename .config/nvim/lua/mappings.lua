@@ -1,18 +1,15 @@
 require "nvchad.mappings"
 
 -- add yours here
-
-local function map(mode, l, r, opts)
-  opts = opts or {}
-  vim.keymap.set(mode, l, r, opts)
-end
--- local map = vim.keymap.set
+vim.keymap.del("n", "<leader>h")
+vim.keymap.del("n", "<leader>v")
+local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 -- See `:help telescope.builtin`
 local builtin = require "telescope.builtin"
 map({ "n", "v" }, "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
@@ -22,8 +19,7 @@ map({ "n", "v" }, "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W
 map({ "n", "v" }, "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
 map({ "n", "v" }, "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
 map({ "n", "v" }, "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
-map({ "n", "v" }, "<leader>fo", builtin.old_files, { desc = "[F]ind [O]ld files" })
-map({ "n", "v" }, "<leader>fb", builtin.git_branches, { desc = "[S]earch [O]ld files" })
+map({ "n", "v" }, "<leader>fo", builtin.oldfiles, { desc = "[F]ind [O]ld files" })
 map({ "n", "v" }, "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 -- It's also possible to pass additional configuration options.
 --  See `:help telescope.builtin.live_grep()` for information about particular keys
@@ -141,6 +137,11 @@ end, { desc = "git [D]iff against last commit" })
 map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
 map("n", "<leader>tD", gitsigns.preview_hunk_inline, { desc = "[T]oggle git show [D]eleted" })
 
+-- Git mappings
+-- map("n", "<leader>gt", )
+map("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches" })
+map("n", "<leader>gl", builtin.git_bcommits, { desc = "[G]it [L]og" })
+
 -- dap mappings
 local dap = require "dap"
 
@@ -155,5 +156,5 @@ map("n", "<F12>", dap.step_out, { desc = "Debug Step Out" })
 -- test mappings
 -- local neotest = require "neotest"
 -- map("n", "<leader>dT", neotest.run({ strategy = "dap" }, { desc = "[D]ebug nearest [T]est" }))
-vim.keymap.del({ "v", "n" }, "<leader>h")
-vim.keymap.del({ "v", "n" }, "<leader>fb")
+--
+-- can't delete terminal binding
