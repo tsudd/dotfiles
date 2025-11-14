@@ -12,7 +12,10 @@ set relativenumber
 set idearefactormode=keep
 set ideajoin
 set showmode
+
 set which-key
+set timeoutlen=5000
+
 set NERDTree
 
 noremap <SPACE> <Nop>
@@ -57,12 +60,16 @@ nnoremap / :action Find<CR>
 " searching stuff
 nnoremap <leader>fa :action SearchEverywhere <CR>
 vnoremap <leader>fa :action SearchEverywhere <CR>
-nnoremap <leader>fo :action GotoFile <CR>
-vnoremap <leader>fo :action GotoFile <CR>
+nnoremap <leader>fo :action RecentFiles <CR>
+vnoremap <leader>fo :action RecentFiles <CR>
+nnoremap <leader>ff :action GotoFile <CR>
+vnoremap <leader>ff :action GotoFile <CR>
 nnoremap <leader>f. :action GotoAction <CR>
 vnoremap <leader>f. :action GotoAction <CR>
 nnoremap <leader>fc :action GotoClass <CR>
 vnoremap <leader>fc :action GotoClass <CR>
+nnoremap <leader>fb :action Switcher <CR>
+vnoremap <leader>fb :action Switcher <CR>
 nmap <leader>fg :action FindInPath<CR>
 vmap <leader>fg :action FindInPath<CR>
 nnoremap <leader>fs :action SelectInProjectView<CR>
@@ -96,16 +103,19 @@ nnoremap <leader>v :action NextSplitter <CR>
 " [G]o into code
 nnoremap gu :action FindUsages <CR>
 nnoremap gd :action GotoSuperMethod <CR>
-nnoremap gD :action GotoDeclaration <CR>
-nnoremap gh :action Back <CR>
+nnoremap gh :action Back <CR
 nnoremap gl :action Forward <CR>
 nnoremap gj :action MethodDown <CR>
 nnoremap gk :action MethodUp <CR>
 nnoremap gs :action GotoSuperMethod <CR>
-nnoremap gw :action ReformatCode <CR>
 nnoremap gi :action GotoImplementation <CR>
 nnoremap g, :action JumpToLastChange <CR>
 nnoremap g. :action JumpToNextChange <CR>
+
+nnoremap n :action FindNext <CR>
+vnoremap n :action FindNext <CR>
+nnoremap N :action FindPrevious <CR>
+vnoremap N :action FindPrevious <CR>
 
 " to look into something better...
 nnoremap K :action ShowHoverInfo <CR>
@@ -130,9 +140,6 @@ vnoremap <leader>ce :action ExtractMethod  <CR>
 nnoremap <leader>cR :action Replace  <CR>
 vnoremap <leader>cR :action Replace  <CR>
 nnoremap <leader>cg :action Generate <CR>
-nnoremap <leader>cr :action RenameElement <CR>
+nnoremap <leader>cn :action RenameElement <CR>
+nnoremap <leader>cf :action ReformatCode <CR>
 " nnoremap <leader>cc :action IntroduceConstant <CR>
-
-imap jk <ESC>
-imap kj <ESC>
-
