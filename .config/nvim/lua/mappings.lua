@@ -35,8 +35,8 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.o.number = true
--- Relative jumping. Will try later.
--- vim.o.relativenumber = true
+-- Relative jumping.
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = "a"
@@ -158,3 +158,32 @@ map("n", "<F12>", dap.step_out, { desc = "Debug Step Out" })
 -- map("n", "<leader>dT", neotest.run({ strategy = "dap" }, { desc = "[D]ebug nearest [T]est" }))
 --
 -- can't delete terminal binding
+
+-- Copilot settings
+-- avoid copilot claiming <Tab> so you can keep your completion mappings (nvim-cmp, etc.)
+vim.g.copilot_no_tab_map = true
+-- hmmm
+vim.keymap.set(
+  "i",
+  "<C-j>",
+  'copilot#Accept("\\n")',
+  { expr = true, silent = true, desc = "Copilot: accept suggestion" }
+)
+-- Group prefix: <Space>c  (c = copilot)
+--    <Space>cc  -> open CopilotChat interactive session (default :CopilotChat)
+--    <Space>ci  -> inline chat near cursor (uses CopilotChat.ask with cursor selection)
+--    <Space>cb  -> quick chat about the entire buffer (prompts user)
+--    <Space>cx  -> close Copilot chat window / abort active request
+--    <Space>ct  -> toggle inline-chat layout (example: floating vs split)
+--    <Space>cp  -> paste last suggestion into buffer (copy action example)
+vim.keymap.set("n", "<leader>cc", ":CopilotChat<CR>", { noremap = true, silent = true, desc = "[C]opilot[C]hat: open" })
+
+-- Inline chat: ask Copilot about the selection under cursor (floating near cursor)
+vim.keymap.set("n", "<leader>ci", function()
+  local input = vim.fn.input "Copilot (inline): "
+  if input ~= "" then
+    require("CopilotChat").ask(input, {
+      selection = require("CopilotChat.select").cursor, -- uses cursor selection/context
+    })
+  end
+end, { desc = "CopilotChat - inline ask" })

@@ -8,6 +8,7 @@ return {
         "vim",
         "lua",
         "vimdoc",
+        "powershell",
         "html",
         "css",
         "c_sharp",

@@ -4,6 +4,13 @@ local nvlsp = require "nvchad.configs.lspconfig"
 
 local servers = {
   html = {},
+  powershell_es = {
+    -- powershell editor services should be installed locally from https://github.com/PowerShell/PowerShellEditorServices/releases
+    -- set the property bundle_path to the root of the extracted PowerShellEditorServices.zip
+    -- PowerShell Core is required
+    bundle_path = "~/powershell",
+    capabilities = nvlsp.capabilities,
+  },
   rubocop = {},
   ruby_lsp = {
     capabilities = nvlsp.capabilities,
