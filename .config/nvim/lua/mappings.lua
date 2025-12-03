@@ -1,5 +1,6 @@
 require "nvchad.mappings"
 
+-- This file is for user-defined key mappings.
 -- add yours here
 vim.keymap.del("n", "<leader>h")
 vim.keymap.del("n", "<leader>v")
@@ -87,11 +88,15 @@ map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 map("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 map("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
+-- misc
+map("n", "<C-j>", ":m .+1<CR>==", { desc = "Move line down" })
+map("n", "<C-k>", ":m .-2<CR>==", { desc = "Move line up" })
+
 -- lsp mappings
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover?" })
 map("n", "gu", vim.lsp.buf.references, { desc = "[G]o to [R]eferences" })
 map("n", "gi", vim.lsp.buf.implementation, { desc = "[G]o to [I]mplementation" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+map("n", "<leader>.", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 map("n", "<leader>cn", vim.lsp.buf.rename, { desc = "[C]ode [R]ename" })
 
 local gitsigns = require "gitsigns"
@@ -134,13 +139,14 @@ map("n", "<leader>hD", function()
   gitsigns.diffthis "@"
 end, { desc = "git [D]iff against last commit" })
 -- Toggles
-map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
 map("n", "<leader>tD", gitsigns.preview_hunk_inline, { desc = "[T]oggle git show [D]eleted" })
 
 -- Git mappings
 -- map("n", "<leader>gt", )
+map("n", "<leader>gt", gitsigns.toggle_current_line_blame, { desc = "[G]it blame line toggle" })
 map("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches" })
 map("n", "<leader>gl", builtin.git_bcommits, { desc = "[G]it [L]og" })
+map("n", "<leader>gg", ":LazyGit<CR>", { desc = "[G]it [G]ui" })
 
 -- dap mappings
 local dap = require "dap"
@@ -161,14 +167,14 @@ map("n", "<F12>", dap.step_out, { desc = "Debug Step Out" })
 
 -- Copilot settings
 -- avoid copilot claiming <Tab> so you can keep your completion mappings (nvim-cmp, etc.)
-vim.g.copilot_no_tab_map = true
--- hmmm
-vim.keymap.set(
+map(
   "i",
-  "<C-j>",
-  'copilot#Accept("\\n")',
-  { expr = true, silent = true, desc = "Copilot: accept suggestion" }
+  "<C-F>",
+  'copilot#Accept("")',
+  { expr = true, replace_keycodes = false, silent = true, desc = "Copilot: accept suggestion" }
 )
+vim.g.copilot_no_tab_map = true
+
 -- Group prefix: <Space>c  (c = copilot)
 --    <Space>cc  -> open CopilotChat interactive session (default :CopilotChat)
 --    <Space>ci  -> inline chat near cursor (uses CopilotChat.ask with cursor selection)
@@ -186,4 +192,4 @@ vim.keymap.set("n", "<leader>ci", function()
       selection = require("CopilotChat.select").cursor, -- uses cursor selection/context
     })
   end
-end, { desc = "CopilotChat - inline ask" })
+end, { desc = "[C]opilotChat - [I]nline ask" })

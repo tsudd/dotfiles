@@ -1,11 +1,31 @@
 return {
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      on_attach = function(bufnr)
+        local api = require "nvim-tree.api"
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- use easy-dotnet to create new file from template
+        vim.keymap.set(
+          "n",
+          "A",
+          function()
+            local node = api.tree.get_node_under_cursor()
+            local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
+            require("easy-dotnet").create_new_item(path)
+          end,
+          { desc = "Create file from dotnet template", buffer = bufnr, noremap = true, silent = true, nowait = true }
+        )
+      end,
+    },
+  },
+  {
     "stevearc/conform.nvim",
     event = "BufWritePre",
     opts = require "configs.conform",
     cmd = { "ConformInfo" },
   },
-
   {
     "kylechui/nvim-surround",
     version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
@@ -33,6 +53,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     lazy = false,
+    opts = require "configs.copilot-chat",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "github/copilot.vim",
@@ -42,10 +63,10 @@ return {
     lazy = false,
     "github/copilot.vim",
   },
-  {
-    -- Setup for omnisharp-extended-lsp.nvim
-    "Hoffs/omnisharp-extended-lsp.nvim",
-  },
+  -- {
+  --   -- Setup for omnisharp-extended-lsp.nvim
+  --   "Hoffs/omnisharp-extended-lsp.nvim",
+  -- },
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
   {
@@ -104,17 +125,13 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
-  {
-    "Issafalcon/neotest-dotnet",
-    lazy = false,
-    dependencies = {
-      "nvim-neotest/neotest",
-    },
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = require "configs.gitsigns",
-  },
+  -- {
+  --   "Issafalcon/neotest-dotnet",
+  --   lazy = false,
+  --   dependencies = {
+  --     "nvim-neotest/neotest",
+  --   },
+  -- },
   "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
   -- Highlight todo, notes, etc in comments
   {
