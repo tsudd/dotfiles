@@ -142,4 +142,5 @@ vnoremap <leader>cR :action Replace  <CR>
 nnoremap <leader>cg :action Generate <CR>
 nnoremap <leader>cn :action RenameElement <CR>
 nnoremap <leader>cf :action ReformatCode <CR>
+nnoremap <leader>. :action ShowIntentionActions <CR>
 " nnoremap <leader>cc :action IntroduceConstant <CR>
