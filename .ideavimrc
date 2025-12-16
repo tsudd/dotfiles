@@ -133,6 +133,8 @@ nnoremap <leader>gd :action Compare.LastVersion<CR>
 nnoremap <leader>gr :action Vcs.Rollback<CR>
 nnoremap <leader>gR :action Git.Rebase<CR>
 
+
+
 " [C]ode actions
 " nnoremap <leader>cv :action IntroduceVariable <CR>
 nnoremap <leader>ce :action ExtractMethod  <CR>
@@ -144,3 +146,9 @@ nnoremap <leader>cn :action RenameElement <CR>
 nnoremap <leader>cf :action ReformatCode <CR>
 nnoremap <leader>. :action ShowIntentionActions <CR>
 " nnoremap <leader>cc :action IntroduceConstant <CR>
+
+" [C]opilot [C]hat
+nnoremap <C-F> :action InsertInlineCompletionAction <CR>
+nnoremap <leader>cc :action copilot.chat.show <CR>
+nnoremap <leader>ci :action copilot.chat.inline <CR>
+
