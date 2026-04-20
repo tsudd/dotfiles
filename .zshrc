@@ -35,7 +35,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -43,4 +43,5 @@ fi
 
 # please tool for daily notifications when you open your terminal https://github.com/NayamAmarshe/please
 # please
+
 
