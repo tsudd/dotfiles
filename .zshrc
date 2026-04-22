@@ -45,3 +45,8 @@ fi
 # please
 
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+
+# opencode
+export PATH=/home/alex/.opencode/bin:$PATH
