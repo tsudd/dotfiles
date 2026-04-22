@@ -148,7 +148,7 @@ nnoremap <leader>. :action ShowIntentionActions <CR>
 " nnoremap <leader>cc :action IntroduceConstant <CR>
 
 " [C]opilot [C]hat
-nnoremap <C-F> :action InsertInlineCompletionAction <CR>
+noremap <C-F> :action InsertInlineCompletionAction <CR>
 nnoremap <leader>cc :action copilot.chat.show <CR>
 nnoremap <leader>ci :action copilot.chat.inline <CR>
 
