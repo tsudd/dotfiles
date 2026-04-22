@@ -4,6 +4,12 @@ local nvlsp = require "nvchad.configs.lspconfig"
 
 local servers = {
   html = {},
+  tsserver = {
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    root_dir = function(fname)
+      return require('lspconfig.util').root_pattern("package.json", "tsconfig.json", ".git")(fname)
+    end,
+  },
   powershell_es = {
     -- powershell editor services should be installed locally from https://github.com/PowerShell/PowerShellEditorServices/releases
     -- set the property bundle_path to the root of the extracted PowerShellEditorServices.zip

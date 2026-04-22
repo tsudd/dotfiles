@@ -1,14 +1,19 @@
 require "nvchad.mappings"
+require "nvchad.mappings"
 
 -- This file is for user-defined key mappings.
 -- add yours here
 vim.keymap.del("n", "<leader>h")
 vim.keymap.del("n", "<leader>v")
+vim.keymap.del("n", "<TAB>")
+vim.keymap.del("n", "<S-TAB>")
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
+map("n", "gt", ":+tabmove", { desc = "Go to next tab" })
+map("n", "gT", "<cmd>tabprevious<cr>", { desc = "Go to previous tab" })
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 -- See `:help telescope.builtin`
@@ -73,6 +78,10 @@ vim.o.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- shift indent for selected lines
+map("v", "<Tab>", ">gv")
+map("v", "<S-Tab>", "<gv")
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = "split"
@@ -173,6 +182,7 @@ map(
   'copilot#Accept("")',
   { expr = true, replace_keycodes = false, silent = true, desc = "Copilot: accept suggestion" }
 )
+
 vim.g.copilot_no_tab_map = true
 
 -- Group prefix: <Space>c  (c = copilot)

@@ -1,5 +1,8 @@
 return {
   {
+    "folke/snacks.nvim",
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       on_attach = function(bufnr)
@@ -51,17 +54,8 @@ return {
     end,
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    lazy = false,
-    opts = require "configs.copilot-chat",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "github/copilot.vim",
-    },
-  },
-  {
-    lazy = false,
     "github/copilot.vim",
+    lazy = false
   },
   -- {
   --   -- Setup for omnisharp-extended-lsp.nvim
