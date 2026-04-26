@@ -22,6 +22,9 @@ return {
 				"markdown",
 				"markdown_inline",
 				"query",
+				"sql",
+				"json",
+				"xml",
 			},
 		},
 		init = function()

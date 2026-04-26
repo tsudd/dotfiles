@@ -11,23 +11,17 @@ return {
 				api.config.mappings.default_on_attach(bufnr)
 
 				-- use easy-dotnet to create new file from template
-				vim.keymap.set(
-					"n",
-					"A",
-					function()
-						local node = api.tree.get_node_under_cursor()
-						local path = node.type == "directory" and node.absolute_path
-							or vim.fs.dirname(node.absolute_path)
-						require("easy-dotnet").create_new_item(path)
-					end,
-					{
-						desc = "Create file from dotnet template",
-						buffer = bufnr,
-						noremap = true,
-						silent = true,
-						nowait = true,
-					}
-				)
+				vim.keymap.set("n", "A", function()
+					local node = api.tree.get_node_under_cursor()
+					local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
+					require("easy-dotnet").create_new_item(path)
+				end, {
+					desc = "Create file from dotnet template",
+					buffer = bufnr,
+					noremap = true,
+					silent = true,
+					nowait = true,
+				})
 			end,
 		},
 	},
@@ -72,7 +66,15 @@ return {
 	-- test new blink
 	-- { import = "nvchad.blink.lazyspec" },
 	{
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+		opts = {
+			auto_install = true,
+		},
+	},
+	{
 		"williamboman/mason.nvim",
+		lazy = false,
 		opts = {
 			ensure_installed = {
 				"lua-language-server",

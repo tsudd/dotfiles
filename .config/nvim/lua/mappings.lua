@@ -1,5 +1,5 @@
-require "nvchad.mappings"
-require "nvchad.mappings"
+require("nvchad.mappings")
+require("nvchad.mappings")
 
 -- This file is for user-defined key mappings.
 -- add yours here
@@ -17,7 +17,7 @@ map("n", "gT", "<cmd>tabprevious<cr>", { desc = "Go to previous tab" })
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 -- See `:help telescope.builtin`
-local builtin = require "telescope.builtin"
+local builtin = require("telescope.builtin")
 map({ "n", "v" }, "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 map({ "n", "v" }, "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 map({ "n", "v" }, "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
@@ -30,10 +30,10 @@ map({ "n", "v" }, "<leader><leader>", builtin.buffers, { desc = "[ ] Find existi
 -- It's also possible to pass additional configuration options.
 --  See `:help telescope.builtin.live_grep()` for information about particular keys
 map("n", "<leader>f/", function()
-  builtin.live_grep {
-    grep_open_files = true,
-    prompt_title = "Live Grep in Open Files",
-  }
+	builtin.live_grep({
+		grep_open_files = true,
+		prompt_title = "Live Grep in Open Files",
+	})
 end, { desc = "[S]earch [/] in Open Files" })
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal. Required: https://www.nerdfonts.com/
@@ -52,7 +52,7 @@ vim.o.mouse = "a"
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+	vim.o.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -107,33 +107,37 @@ map("n", "gu", vim.lsp.buf.references, { desc = "[G]o to [R]eferences" })
 map("n", "gi", vim.lsp.buf.implementation, { desc = "[G]o to [I]mplementation" })
 map("n", "<leader>.", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 map("n", "<leader>cn", vim.lsp.buf.rename, { desc = "[C]ode [R]ename" })
+map("n", "<leader>cd", vim.lsp.buf.definition, { desc = "[C]ode [D]efinition" })
+map("n", "<leader>cs", vim.lsp.buf.signature_help, { desc = "[C]ode [S]ignature Help" })
+map("n", "<leader>cr", vim.lsp.buf.references, { desc = "[C]ode [R]eferences" })
+map("n", "<leader>cf", vim.lsp.buf.format, { desc = "[C]ode [F]ormat" })
 
-local gitsigns = require "gitsigns"
+local gitsigns = require("gitsigns")
 
 --    Navigation
 map("n", "]c", function()
-  if vim.wo.diff then
-    vim.cmd.normal { "]c", bang = true }
-  else
-    gitsigns.nav_hunk "next"
-  end
+	if vim.wo.diff then
+		vim.cmd.normal({ "]c", bang = true })
+	else
+		gitsigns.nav_hunk("next")
+	end
 end, { desc = "Jump to next git [c]hange" })
 
 map("n", "[c", function()
-  if vim.wo.diff then
-    vim.cmd.normal { "[c", bang = true }
-  else
-    gitsigns.nav_hunk "prev"
-  end
+	if vim.wo.diff then
+		vim.cmd.normal({ "[c", bang = true })
+	else
+		gitsigns.nav_hunk("prev")
+	end
 end, { desc = "Jump to previous git [c]hange" })
 
 -- Actions
 -- visual mode
 map("v", "<leader>hs", function()
-  gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+	gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "git [s]tage hunk" })
 map("v", "<leader>hr", function()
-  gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+	gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "git [r]eset hunk" })
 -- normal mode
 map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
@@ -145,7 +149,7 @@ map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
 map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
 map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
 map("n", "<leader>hD", function()
-  gitsigns.diffthis "@"
+	gitsigns.diffthis("@")
 end, { desc = "git [D]iff against last commit" })
 -- Toggles
 map("n", "<leader>tD", gitsigns.preview_hunk_inline, { desc = "[T]oggle git show [D]eleted" })
@@ -158,7 +162,7 @@ map("n", "<leader>gl", builtin.git_bcommits, { desc = "[G]it [L]og" })
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "[G]it [G]ui" })
 
 -- dap mappings
-local dap = require "dap"
+local dap = require("dap")
 
 map("n", "<leader>dt", dap.toggle_breakpoint, { desc = "[D]ebug [T]oggle breakpoint" })
 map("n", "<leader>dc", dap.continue, { desc = "[D]ebug [C]ontinue" })
@@ -177,29 +181,10 @@ map("n", "<F12>", dap.step_out, { desc = "Debug Step Out" })
 -- Copilot settings
 -- avoid copilot claiming <Tab> so you can keep your completion mappings (nvim-cmp, etc.)
 map(
-  "i",
-  "<C-F>",
-  'copilot#Accept("")',
-  { expr = true, replace_keycodes = false, silent = true, desc = "Copilot: accept suggestion" }
+	"i",
+	"<C-F>",
+	'copilot#Accept("<CR>")',
+	{ expr = true, replace_keycodes = false, silent = true, desc = "Copilot: accept suggestion" }
 )
 
 vim.g.copilot_no_tab_map = true
-
--- Group prefix: <Space>c  (c = copilot)
---    <Space>cc  -> open CopilotChat interactive session (default :CopilotChat)
---    <Space>ci  -> inline chat near cursor (uses CopilotChat.ask with cursor selection)
---    <Space>cb  -> quick chat about the entire buffer (prompts user)
---    <Space>cx  -> close Copilot chat window / abort active request
---    <Space>ct  -> toggle inline-chat layout (example: floating vs split)
---    <Space>cp  -> paste last suggestion into buffer (copy action example)
-vim.keymap.set("n", "<leader>cc", ":CopilotChat<CR>", { noremap = true, silent = true, desc = "[C]opilot[C]hat: open" })
-
--- Inline chat: ask Copilot about the selection under cursor (floating near cursor)
-vim.keymap.set("n", "<leader>ci", function()
-  local input = vim.fn.input "Copilot (inline): "
-  if input ~= "" then
-    require("CopilotChat").ask(input, {
-      selection = require("CopilotChat.select").cursor, -- uses cursor selection/context
-    })
-  end
-end, { desc = "[C]opilotChat - [I]nline ask" })
